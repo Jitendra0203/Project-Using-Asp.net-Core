@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ChetuFinalProject.Models.Trainee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a button type="button" class="btn btn-primary" asp-action="AddTrainee">AddTrainee</a>
+</p>
+<table class="table table-bordered table-danger" border="1">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date-Of-Birth</th>
+            <th>Address</th>
+            <th>State</th>
+            <th>Image</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var d in Model) {
+            var imagepath = "Images/" + d.path;
+            <tr>
+            <td>@d.name</td>
+            <td>@d.gender</td>
+            <td>@d.dob</td>
+            <td>@d.Add</td>
+            <td>@d.state</td>
+            <td>
+                <img src="@imagepath" height="100px" width="100px">
+            </td>
+              
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-controller="Trainee" asp-route-id="@d.id">Edit</a> |
+                <a class="btn btn-info" asp-action="Details" asp-controller="Trainee" asp-route-id="@d.id">Details</a> |
+                <a class="btn btn-danger" asp-action="Delete"asp-controller="Trainee" asp-route-id="@d.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

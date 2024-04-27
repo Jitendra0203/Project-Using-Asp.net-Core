@@ -1,0 +1,63 @@
+﻿@model ChetuFinalProject.Models.Trainee
+
+@{
+    ViewData["Title"] = "AddTrainee";
+}
+<h1>AddTrainee</h1>
+
+<h4>Trainee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddTrainee" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label">Name:-
+                <input asp-for="name" class="form-control" />
+                </label>
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="gender">Gender:</label><br />
+                <input type="radio" asp-for="gender" value="Male" /> Male<br />
+                <input type="radio" asp-for="gender" value="Female" /> Female<br />
+                <input type="radio" asp-for="gender" value="Other" /> Other
+                <span asp-validation-for="gender" class="text-danger" ></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dob" class="control-label"></label>
+                <input  type="datetime-local"   asp-for="dob" class="form-control" />
+                <span asp-validation-for="dob" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Add" class="control-label">Address:-</label>
+                <textarea asp-for="Add" class="form-control" ></textarea>
+                <span asp-validation-for="Add" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label class="form-label">Select State: </label>
+                @Html.DropDownListFor(x => x.state, new SelectList(ViewBag.State, "Value", "Text"), "Select State",new{@class = "form-control"})
+                <span asp-validation-for="state" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input  type="file" asp-for="Image" class="form-control" />
+                @* <span asp-validation-for="Image" class="text-danger"></span> *@
+            </div>
+            <div class="form-group">
+                <input type="submit" value="AddTrainee" class="btn btn-primary m-2 p-2" />
+            </div>
+        </form>
+    </div>
+</div>
+<br/>
+
+<div>
+    <a  class="btn btn-outline-warning" value="BackList" asp-action="Index" asp-controller="Trainee">Back To List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
